@@ -1,8 +1,12 @@
 ### Author @Varun, Tuplejump, Inc.
 
 ### To start casssandra cluster follow these steps.
-Latest README - Updated on 15th June, 2015 ########
+
+Latest README - Updated on 15th June, 2015
+
+########
 Technologies used:
+
 Vagrant, CoreOS, Docker, shell scripts
 
 Steps:
