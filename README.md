@@ -1,4 +1,4 @@
-### Author @Varun, Tuplejump, Inc.
+### Author @Varun Sharma - Tuplejump, Inc.
 
 ### To start casssandra cluster follow these steps.
 
