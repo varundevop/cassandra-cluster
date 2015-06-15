@@ -4,7 +4,7 @@ coreos:
   etcd:
     # generate a new token for each unique cluster from https://discovery.etcd.io/new
     # WARNING: replace each time you 'vagrant destroy'
-    #discovery: https://discovery.etcd.io/<token>
+    discovery: https://discovery.etcd.io/b0aa0b2bf13598762f03d57be90c83b2
     addr: $public_ipv4:4001
     peer-addr: $public_ipv4:7001
   fleet:
@@ -28,3 +28,19 @@ coreos:
 
         [Install]
         WantedBy=sockets.target
+
+
+# updated by Varun for IP address sync as per design
+
+#    - name: 00-eth0.network
+#      runtime: true
+#      content: |
+#        [Match]
+#        Name=eth1
+
+#        [Network]
+#        DNS=172.17.8.101
+#        Address=172.17.8.101/24
+#        Gateway=172.17.8.101
+
+

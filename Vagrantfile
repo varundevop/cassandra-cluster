@@ -28,7 +28,7 @@ end
 
 Vagrant.configure("2") do |config|
   config.vm.box = "coreos-%s" % $update_channel
-  config.vm.box_version = ">= 308.0.1"
+#  config.vm.box_version = ">= 308.0.1"
   config.vm.box_url = "http://%s.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json" % $update_channel
 
   config.vm.provider :vmware_fusion do |vb, override|
@@ -80,13 +80,25 @@ Vagrant.configure("2") do |config|
       end
 
       config.vm.provider :virtualbox do |vb|
-        vb.gui = $vb_gui
+  #      vb.gui = $vb_gui
         vb.memory = $vb_memory
         vb.cpus = $vb_cpus
       end
 
-      ip = "172.17.8.#{i+100}"
+#      ip = "172.17.8.#{i+100}"
+      ip = "192.168.56.#{i+100}"
       config.vm.network :private_network, ip: ip
+
+      config.vm.synced_folder "./docker", "/home/core/shared", disabled: false
+
+#Run this script to configure cassandra
+
+      config.vm.provision "shell", path: "./docker/load_docker.sh"
+
+      config.vm.provision "shell", path: "./docker/config_cass.sh"
+#      config.vm.provision :shell, :inline => "sh /home/core/shared/config_cass.sh", :privileged => true
+
+
 
       # Uncomment below to enable NFS for sharing the host machine into the coreos-vagrant VM.
       #config.vm.synced_folder ".", "/home/core/share", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp']
