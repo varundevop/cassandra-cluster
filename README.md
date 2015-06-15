@@ -8,30 +8,40 @@ Vagrant, CoreOS, Docker, shell scripts
 Steps:
 1. change the directory to the package.
     $cd tuplejump_cassandra
+
 2. check whether coreos is running or not, if running then clear
     $vagrant status
     if no machine is up then we can go ahead and start cluster
     if there are machines up and running
     $./reset.sh
+
 3. start a cassandra cluster of 5 nodes.
     $./start.sh 5 stable
     5 - no. of nodes
     stable - stable coreos version
+
 4. login in coreos instance
     $vagrant ssh core-01
+
 5. check running cluster on coreOS > core-01
     $fleetctl list-machines
+
 6. change the directory /home/core/shared/
     $cd shared
+
 7. start cassandra cluster on docker
     $./ start_docker_container_fleetctl.sh
+
 8. check docker container status, this command will list out container running.
     $docker ps -a
+
 9. log into docker container
     $docker attach docker-container_id (press enter(button) if the result is blank.
     docker-container_id: first three digits of container id.
+
 10. Once logged into container check processes to confirm cassandra is running:
      $ps 
+
 11. check cassandra cluster status by using nodetool
       $/opt/apache-cassandra-2.0.9/bin/nodetool -h localhost status
 
